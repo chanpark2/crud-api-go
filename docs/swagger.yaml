@@ -1,0 +1,140 @@
+basePath: /api/v1
+definitions:
+  request.CreateTagsRequest:
+    properties:
+      name:
+        maxLength: 200
+        minLength: 1
+        type: string
+    required:
+    - name
+    type: object
+  request.UpdateTagsRequest:
+    properties:
+      id:
+        type: integer
+      name:
+        maxLength: 200
+        minLength: 1
+        type: string
+    required:
+    - id
+    - name
+    type: object
+  response.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: CRUD API using Golang Gin Framework
+  title: Golang Gin Framework CRUD API
+paths:
+  /tags:
+    get:
+      consumes:
+      - application/json
+      description: FindAll tags
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: FindAll tags
+      tags:
+      - tags
+    post:
+      consumes:
+      - application/json
+      description: Create new tags
+      parameters:
+      - description: Create Tags
+        in: body
+        name: tags
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateTagsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Create new tags
+      tags:
+      - tags
+  /tags/{tagId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete tags
+      parameters:
+      - description: Tag ID
+        in: path
+        name: tagId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Delete tags
+      tags:
+      - tags
+    get:
+      consumes:
+      - application/json
+      description: FindById tags
+      parameters:
+      - description: Tag ID
+        in: path
+        name: tagId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: FindById tags
+      tags:
+      - tags
+    put:
+      consumes:
+      - application/json
+      description: Update tags
+      parameters:
+      - description: Tag ID
+        in: path
+        name: tagId
+        required: true
+        type: integer
+      - description: Update Tags
+        in: body
+        name: tags
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateTagsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Update tags
+      tags:
+      - tags
+swagger: "2.0"

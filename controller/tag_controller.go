@@ -18,6 +18,15 @@ func NewTagsController(service service.TagsService) *TagsController {
 	return &TagsController{tagsService: service}
 }
 
+// Create CreateTags godoc
+// @Summary Create new tags
+// @Description Create new tags
+// @Tags tags
+// @Accept  application/json
+// @Produce  application/json
+// @Param tags body request.CreateTagsRequest true "Create Tags"
+// @Success 200 {object} response.Response{}
+// @Router /tags [post]
 func (controller *TagsController) Create(ctx *gin.Context) {
 	createTagsRequest := request.CreateTagsRequest{}
 	err := ctx.ShouldBindJSON(&createTagsRequest)
@@ -32,6 +41,16 @@ func (controller *TagsController) Create(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
+// Update UpdateTags godoc
+// @Summary Update tags
+// @Description Update tags
+// @Param tagId path int true "Tag ID"
+// @Param tags body request.UpdateTagsRequest true "Update Tags"
+// @Tags tags
+// @Accept  application/json
+// @Produce  application/json
+// @Success 200 {object} response.Response{}
+// @Router /tags/{tagId} [put]
 func (controller *TagsController) Update(ctx *gin.Context) {
 	updateTagsRequest := request.UpdateTagsRequest{}
 	err := ctx.ShouldBindJSON(&updateTagsRequest)
@@ -52,6 +71,15 @@ func (controller *TagsController) Update(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
+// Delete DeleteTags godoc
+// @Summary Delete tags
+// @Description Delete tags
+// @Param tagId path int true "Tag ID"
+// @Tags tags
+// @Accept  application/json
+// @Produce  application/json
+// @Success 200 {object} response.Response{}
+// @Router /tags/{tagId} [delete]
 func (controller *TagsController) Delete(ctx *gin.Context) {
 	tagId := ctx.Param("tagId")
 	id, err := strconv.Atoi(tagId)
@@ -67,6 +95,15 @@ func (controller *TagsController) Delete(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
+// FindById FindByIdTags godoc
+// @Summary FindById tags
+// @Description FindById tags
+// @Param tagId path int true "Tag ID"
+// @Tags tags
+// @Accept  application/json
+// @Produce  application/json
+// @Success 200 {object} response.Response{}
+// @Router /tags/{tagId} [get]
 func (controller *TagsController) FindById(ctx *gin.Context) {
 	tagId := ctx.Param("tagId")
 	id, err := strconv.Atoi(tagId)
@@ -84,6 +121,14 @@ func (controller *TagsController) FindById(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
+// FindAll FindAllTags godoc
+// @Summary FindAll tags
+// @Description FindAll tags
+// @Tags tags
+// @Accept  application/json
+// @Produce  application/json
+// @Success 200 {object} response.Response{}
+// @Router /tags [get]
 func (controller *TagsController) FindAll(ctx *gin.Context) {
 	result := controller.tagsService.FindAll()
 

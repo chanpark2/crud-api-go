@@ -3,11 +3,16 @@ package router
 import (
 	"Users/witch/IdeaProjects/frameworktest/controller"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"net/http"
 )
 
 func NewRouter(tagsController *controller.TagsController) *gin.Engine {
 	router := gin.Default()
+
+	// use ginSwagger middleware to
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	router.GET("", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "welcome home")

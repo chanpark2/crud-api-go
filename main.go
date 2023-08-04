@@ -12,8 +12,14 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/rs/zerolog/log"
 	"net/http"
+
+	_ "Users/witch/IdeaProjects/frameworktest/docs" // Swagger docs
+	_ "github.com/swaggo/gin-swagger"
 )
 
+// @title Golang Gin Framework CRUD API
+// @description CRUD API using Golang Gin Framework
+// @BasePath /api/v1
 func main() {
 
 	log.Info().Msg("Starting server...")
